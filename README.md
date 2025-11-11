@@ -14,10 +14,12 @@ Use your favorite plugin manager or the built-in package support.
 
 ## Usage.
 
+English.
 1. Open markdown file (`$vim file.md`, `$nvim file.md`).
 2. Run `:OpenMdToc`.
-3. Want to close the TOC, run `:CloseMdToc`.
+3. if you want to close the TOC sidebar, run `:CloseMdToc`.
 
+Japanese.
 1. マークダンファイルを開く(`$vim file.md`, `$nvim file.md`)。
 2. `:OpenMdToc`を実行する。
 3. TOCを閉じたい場合、`:CloseMdToc`を実行する。
