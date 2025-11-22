@@ -50,7 +50,6 @@ fu! s:Open_Toc() abort
       aboveleft vertical lwindow
    endif
 
-
    " 目次の幅を調整
    if exists("g:vmts_toc_width")
       execute "vert res" .. g:vmts_toc_width
@@ -360,6 +359,7 @@ fu! vmts#Check() abort
             call s:Remove_From_Monitoring(0, w:vmts_toc_wid)
          " 別のバッファを開いている
          elseif w:vmts_identity["md"] != bufnr()
+            " 目次の変数が正しい場合、目次は孤立化している
             call s:Remove_From_Monitoring(0, w:vmts_toc_wid)
          " toc_widへ移動できない
          elseif !win_gotoid(w:vmts_toc_wid)
@@ -448,7 +448,7 @@ fu! vmts#Check() abort
 endfu
 
 " このプラグインの管理下から外す
-" カレントウィンドウの種類(md=0, toc=1), カレントウィンドウの対のウィンドウID
+" 引数: カレントウィンドウの種類(md=0, toc=1), カレントウィンドウの対のウィンドウID
 fu! s:Remove_From_Monitoring(current_kind, pair_wid) abort
    let current_wid = win_getid()
    " markdown
@@ -467,7 +467,14 @@ fu! s:Remove_From_Monitoring(current_kind, pair_wid) abort
             if win_gotoid(toc_wid)
 
                if exists("w:vmts_identity")
-                  unlet w:vmts_identity
+                  " 目次が開いているバッファが変化していない場合、この目次を閉じる
+                  if w:vmts_identity["toc"] == bufnr()
+                     unlet w:vmts_identity
+                     if exists("w:vmts_md_wid")
+                        unlet w:vmts_md_wid
+                     endif
+                     quit
+                  endif
                endif
 
                if exists("w:vmts_md_wid")
