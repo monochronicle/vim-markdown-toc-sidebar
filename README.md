@@ -1,8 +1,9 @@
 # Vim markdown TOC sidebar
 
-A Vim/Neovim plugin that shows a Markdown file's table of contents in a sidebar (left or right).
+A Vim/Neovim plugin that shows a Markdown file's table of contents in a sidebar (left or right). 
+Like VSCode's defalut outline function.
 
-Markdownファイルの目次を左右どちらかのサイドバーに表示するVim/Neovimプラグイン。
+Markdownファイルの目次を左右どちらかのサイドバーに表示するVim/Neovimプラグイン。VSCodeにデフォルトであるOutline機能のようなもの。
 
 ![image1](sample/screenshot-left-side.png)
 
